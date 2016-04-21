@@ -22,9 +22,14 @@ int main(){
   while(true){
     // Reads current image from camera stores in memory.
     take_picture();
-    // Returns "whiteness" of each pixel.
-    c = get_pixel(160,120,3);
-    printf("%d\n",c);
+	int sum=0;
+	char c;
+	for(int i=0; i<320; i++){
+		c = get_pixel(120, i, 3);
+		sum += i*c;
+	}
+	
+    printf("%d\n",sum);
     // Repeats every half second.
     Sleep(0,500000);
   }
