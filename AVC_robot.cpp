@@ -8,6 +8,8 @@ extern "C" int Sleep( int sec, int usec );
 // Motor is the pin it is connected to, dir is direction 1 or 2, speed is 0-255
 extern "C" int set_motor(int motor, int speed);
 
+const int PICTURE_WIDTH = 320;
+
 int main(){
   // Sets up raspbery pi hardware and ensures everything is working.
     init(0)
@@ -22,14 +24,14 @@ int main(){
   while(true){
     // Reads current image from camera stores in memory.
     take_picture();
-	int sum=0;
+	int total=0;
 	char c;
-	for(int i=0; i<320; i++){
-		c = get_pixel(120, i, 3);
-		sum += i*c;
+	for(int i=0; i<PICTURE_WIDTH; i++){
+		c = get_pixel(120, i-(PICTURE_WIDTH/2), 3);
+		total += i*c;
 	}
 	
-    printf("%d\n",sum);
+    printf("%d\n",total);
     // Repeats every half second.
     Sleep(0,500000);
   }
