@@ -34,8 +34,8 @@ int main(){
     	int total=0;
     	char c;
     	for(int i=0; i<PICTURE_WIDTH; i++){
-	    	c = get_pixel(120, i-(PICTURE_WIDTH/2), 3);
-	    	total += i*c;
+	    	c = get_pixel(120, i, 3);
+	    	total += (i-(PICTURE_WIDTH/2))*c;
 	    }
 	
         printf("%d\n",total);
