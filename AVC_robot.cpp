@@ -35,10 +35,21 @@ int main(){
     	int total=0;
     	char c;
     	for(int i=0; i<PICTURE_WIDTH; i++){
-	    	c = get_pixel(i, PICTURE_HEIGHT/2, 3);
-		//printf("%d\n", c);
-	    	total += (i-(PICTURE_WIDTH/2))*c;
-	    }
+	    c = get_pixel(i, PICTURE_HEIGHT/2, 3);
+            //printf("%d\n", c);
+	    total += (i-(PICTURE_WIDTH/2))*c;
+	}
+	
+	if(total > 0){
+            set_motor(1, -255);
+            set_motor(2, -255);
+        } else if(total < 0) {
+            set_motor(1, 255);
+            set_motor(2, 255);
+        } else {
+            set_motor(1, 255);
+            set_motor(2, -255);
+        }
 	
         printf("%d\n",total);
         // Repeats every half second.
