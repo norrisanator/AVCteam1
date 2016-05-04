@@ -15,7 +15,8 @@ AVC stuff.
 - We all attended the labs/meetings held
 
 ##Checklist for Week Two
-- [ ] Hardware: Choose the design for the robot
+- [x] Hardware: Choose the design for the robot
+- [x] Software: Fix the bug (fix the getpixel method as we are getting a row out of range error)
 - [ ] Software: Working out what the values the sensor are going to give
 - [ ] Software: Try get the robot to follow the line for quadrant one
 - [ ] Simran: Write a progress report for week two
