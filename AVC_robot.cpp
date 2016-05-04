@@ -1,7 +1,8 @@
 #include  <stdio.h>
 #include  <time.h>
 // constants
-const int PICTURE_WIDTH = 240;
+const int PICTURE_WIDTH = 320;
+const int PICTURE_HEIGHT = 240;
 
 extern "C" int init(int d_lev);
 extern "C" int take_picture();
@@ -21,11 +22,11 @@ int main(){
   // Sets up raspbery pi hardware and ensures everything is working.
     init(0);
     // Test turning motors on for 5 seconds
-    set_motor(1, 255);
-    set_motor(2, -255);
-    Sleep(5,0);
-    set_motor(1, 0);
-    set_motor(2, 0);
+    //set_motor(1, 255);
+    //set_motor(2, -255);
+    //Sleep(5,0);
+    //set_motor(1, 0);
+    //set_motor(2, 0);
     // Test code for camera, takes picture and prints it.
     char c;
     while(true){
@@ -34,8 +35,8 @@ int main(){
     	int total=0;
     	char c;
     	for(int i=0; i<PICTURE_WIDTH; i++){
-	    	c = get_pixel(160, i, 3);
-		printf("%d\n", c);
+	    	c = get_pixel(i, PICTURE_HEIGHT/2, 3);
+		//printf("%d\n", c);
 	    	total += (i-(PICTURE_WIDTH/2))*c;
 	    }
 	
