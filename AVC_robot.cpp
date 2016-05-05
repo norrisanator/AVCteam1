@@ -3,6 +3,7 @@
 // constants
 const int PICTURE_WIDTH = 320;
 const int PICTURE_HEIGHT = 240;
+const int THRESHOLD = 500000;
 
 extern "C" int init(int d_lev);
 extern "C" int take_picture();
@@ -40,10 +41,10 @@ int main(){
 	    total += (i-(PICTURE_WIDTH/2))*c;
 	}
 	
-	if(total > 0){
+	if(total > THRESHOLD){
             set_motor(1, -255);
             set_motor(2, -255);
-        } else if(total < 0) {
+        } else if(total < THRESHOLD) {
             set_motor(1, 255);
             set_motor(2, 255);
         } else {
