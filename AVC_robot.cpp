@@ -28,6 +28,9 @@ void openGate(){
 int main(){
   // Sets up raspbery pi hardware and ensures everything is working.
     init(0);
+    
+    openGate();
+    
     // Test turning motors on for 5 seconds
     //set_motor(1, 255);
     //set_motor(2, -255);
@@ -35,7 +38,7 @@ int main(){
     //set_motor(1, 0);
     //set_motor(2, 0);
     // Test code for camera, takes picture and prints it.
-    while(true){
+    while(!true){
         // Reads current image from camera stores in memory.
         take_picture();
     	int total=0;
