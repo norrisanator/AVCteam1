@@ -16,12 +16,11 @@ extern "C" int connect_to_server( char server_addr[15],int port);
 extern "C" int send_to_server(char message[24]);
 extern "C" int receive_from_server(char message[24]);
 
+bool run = true;
 
 void signalHandler( int signum )
 {
-    set_motor(1, 0);
-    set_motor(2, 0);
-    exit(signum);
+    run = false;
 }
 
 
@@ -39,7 +38,7 @@ int main(){
     //set_motor(2, 0);
     // Test code for camera, takes picture and prints it.
     char c;
-    while(true){
+    while(run){
         // Reads current image from camera stores in memory.
         take_picture();
     	int total=0;
@@ -65,5 +64,7 @@ int main(){
         // Repeats every half second.
         Sleep(0,500000);
     }
+    set_motor(1, 0);
+    set_motor(2, 0);
     return 0;
 }
