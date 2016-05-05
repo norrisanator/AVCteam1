@@ -29,19 +29,18 @@ int main(){
     //set_motor(1, 0);
     //set_motor(2, 0);
     // Test code for camera, takes picture and prints it.
-    char c;
     while(true){
         // Reads current image from camera stores in memory.
         take_picture();
     	int total=0;
-    	char c;
+    	bool c;
     	for(int i=0; i<PICTURE_WIDTH; i++){
-	    c = get_pixel(i, PICTURE_HEIGHT/2, 3);
+	    c = get_pixel(i, PICTURE_HEIGHT/2, 3) > 100;
             //printf("%d\n", c);
 	    total += (i-(PICTURE_WIDTH/2))*c;
 	}
 	
-	if(total > THRESHOLD){
+	/*if(total > THRESHOLD){
             set_motor(1, -30);
             set_motor(2, -30);
         } else if(total < THRESHOLD) {
@@ -50,7 +49,7 @@ int main(){
         } else {
             set_motor(1, 30);
             set_motor(2, -30);
-        }
+        }*/
 	
         printf("%d\n",total);
         // Repeats every half second.
