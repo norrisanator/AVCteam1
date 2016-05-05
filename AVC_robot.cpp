@@ -42,14 +42,14 @@ int main(){
 	}
 	
 	if(total > THRESHOLD){
-            set_motor(1, -255);
-            set_motor(2, -255);
+            set_motor(1, -30);
+            set_motor(2, -30);
         } else if(total < THRESHOLD) {
-            set_motor(1, 255);
-            set_motor(2, 255);
+            set_motor(1, 30);
+            set_motor(2, 30);
         } else {
-            set_motor(1, 255);
-            set_motor(2, -255);
+            set_motor(1, 30);
+            set_motor(2, -30);
         }
 	
         printf("%d\n",total);
