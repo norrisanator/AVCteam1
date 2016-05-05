@@ -22,5 +22,10 @@ AVC stuff.
 - [ ] Simran: Write a progress report for week two
 - [ ] Simran: Plan a structure for the progress report
 
+##Week Two Review
+- The hardware have ddecided on the design/theme of the robot
+- We were able to fix the bug we encountered in the lab by changing the value of the picture constant
+- Everyone attended the lab this week
+
 ##Checklist for Week Three
 - [ ] Hardware: Start printing
