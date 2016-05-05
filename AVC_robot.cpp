@@ -1,5 +1,6 @@
 #include  <stdio.h>
 #include  <time.h>
+#include <csignal>
 // constants
 const int PICTURE_WIDTH = 320;
 const int PICTURE_HEIGHT = 240;
@@ -16,9 +17,18 @@ extern "C" int send_to_server(char message[24]);
 extern "C" int receive_from_server(char message[24]);
 
 
+void signalHandler( int signum )
+{
+    set_motor(1, 0);
+    set_motor(2, 0);
+    exit(signum);
+}
+
+
 
 
 int main(){
+    signal(SIGINT, signalHandler);
   // Sets up raspbery pi hardware and ensures everything is working.
     init(0);
     // Test turning motors on for 5 seconds
