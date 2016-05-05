@@ -16,7 +16,13 @@ extern "C" int connect_to_server( char server_addr[15],int port);
 extern "C" int send_to_server(char message[24]);
 extern "C" int receive_from_server(char message[24]);
 
-
+void openGate(){
+    connect_to_server("130.195.6.196", 1024);
+    send_to_server("Hello server");
+    char message[24];
+    receive_from_server(message);
+    printf("%s", message);
+}
 
 
 int main(){
