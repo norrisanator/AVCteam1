@@ -30,7 +30,7 @@ int main(){
     //set_motor(2, 0);
     // Test code for camera, takes picture and prints it.
     char c;
-    while(run){
+    while(true){
         // Reads current image from camera stores in memory.
         take_picture();
     	int total=0;
