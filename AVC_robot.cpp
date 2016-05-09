@@ -4,6 +4,7 @@
 const int PICTURE_WIDTH = 320;
 const int PICTURE_HEIGHT = 240;
 const int THRESHOLD = 500000;
+const int KP = 0.5;
 
 extern "C" int init(int d_lev);
 extern "C" int take_picture();
@@ -29,7 +30,7 @@ int main(){
   // Sets up raspbery pi hardware and ensures everything is working.
     init(0);
     
-    openGate();
+    //openGate();
     
     // Test turning motors on for 5 seconds
     //set_motor(1, 255);
@@ -38,16 +39,25 @@ int main(){
     //set_motor(1, 0);
     //set_motor(2, 0);
     // Test code for camera, takes picture and prints it.
-    while(!true){
+    while(true){
         // Reads current image from camera stores in memory.
         take_picture();
     	int total=0;
     	bool c;
     	for(int i=0; i<PICTURE_WIDTH; i++){
-	    c = get_pixel(i, PICTURE_HEIGHT/2, 3) > 100;
+            c = get_pixel(i, PICTURE_HEIGHT/2, 3) > 127;
             //printf("%d\n", c);
-	    total += (i-(PICTURE_WIDTH/2))*c;
-	}
+            total += (i-(PICTURE_WIDTH/2))*c;
+	    }
+
+        int proportional_signal = total*KP;
+		
+		set_motor(1, (proportional_signal/(160*1*KP))*255);
+		set_motor(2, (proportional_signal/(160*1*KP))*255);
+
+
+
+
 	
 	/*if(total > THRESHOLD){
             set_motor(1, -30);
