@@ -22,7 +22,7 @@ void openGate(){
     char message[24];
     receive_from_server(message);
     message[6] = '\0';
-    send_to_server(message)
+    send_to_server(message);
     printf("%s", message);
 }
 
