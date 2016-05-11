@@ -38,27 +38,27 @@ int main(){
     while(true){
         // Reads current image from camera stores in memory.
         take_picture();
-    	int total=0;
-		int prev_error = 0;
-		int total_error = 0;
-    	bool c;
-    	for(int i=0; i<PICTURE_WIDTH; i++){
+        int total=0;
+        int prev_error = 0;
+        int total_error = 0;
+        bool c;
+        for(int i=0; i<PICTURE_WIDTH; i++){
             c = get_pixel(i, PICTURE_HEIGHT/2, 3) > 127;
             //printf("%d\n", c);
             total += (i-(PICTURE_WIDTH/2))*c;
 	    }
 		
-		total_error += total;
+        total_error += total;
 
         double proportional_signal = total*KP;
-		double derivative_signal = (total-prev_error)*KD;
-		double integral_signal =  total_error*KI;
-		prev_error = total;
+        double derivative_signal = (total-prev_error)*KD;
+        double integral_signal =  total_error*KI;
+        prev_error = total;
 		
-		double total_signal = proportional_signal + derivative_signal + integral_signal;
+        int total_signal = proportional_signal + derivative_signal + integral_signal;
 		
-		set_motor(1, 100 + (total_signal/(160*1*KP))*255);
-		set_motor(2, 100 + (total_signal/(160*1*KP))*255);
+        set_motor(1, 100 + (total_signal/(160*1*KP))*255);
+        set_motor(2, 100 + (total_signal/(160*1*KP))*255);
 	
         printf("tot:%d\nprop:%d\n",totalm proportional_signal);
         // Repeats every half second.
