@@ -17,10 +17,10 @@ AVC stuff.
 ##Checklist for Week Two
 - [x] Hardware: Choose the design for the robot
 - [x] Software: Fix the bug (get_pixel() returning a row out of range error, *row and col values needed to be swapped*)
-- [ ] Software: Working out what the values the sensor are going to give
+- [x] Software: Working out what the values the sensor are going to give
 - [ ] Software: Try get the robot to follow the line for quadrant one
 - [ ] Simran: Write a progress report for week two
-- [ ] Simran: Plan a structure for the progress report
+- [x] Simran: Plan a structure for the progress report
 
 ##Week Two Review
 - The hardware have decided on the design/theme of the robot *(focus on being short in length for maze corners)*
