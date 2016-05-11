@@ -1,4 +1,4 @@
-# AVCteam1
+# AVCteam Numoro Uno
 AVC stuff. 
 ##Checklist for Week One
 - [x] Hardware: Plan the robot, and create a prototype of how the robot will work most efficently
