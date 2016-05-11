@@ -32,7 +32,6 @@ AVC stuff.
 ##Checklist for Week Three
 - [ ] Hardware: Start printing
 - [ ] Software: Fix error in the code to make he robot follow the line for quadrant one
-- 
 - [ ] Simran: Weekly Report
 
 ##Week Three Review
