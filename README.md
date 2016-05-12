@@ -30,9 +30,11 @@ AVC stuff.
 - Everyone attended the lab this week
 
 ##Checklist for Week Three
-- [ ] Hardware: Start printing
-- [ ] Software: Fix error in the code to make he robot follow the line for quadrant one
+- [ ] Hardware: Making something to support the IR sensors 
+- [x] Hardware: Change the position of the camera
+- [ ] Software: Fix error in the code to make the robot follow the line for quadrant one
 - [ ] Simran: Weekly Report
+- [ ] All: Discuss the progress report, so we all write similar things
 
 ##Week Three Review
 - Everyone attended the Lab session
