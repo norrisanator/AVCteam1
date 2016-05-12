@@ -4,7 +4,7 @@
 const int PICTURE_WIDTH = 320;
 const int PICTURE_HEIGHT = 240;
 const int THRESHOLD = 500000;
-const double KP = 0.5;
+const double KP = 0.005;
 const double KD = 0;
 const double KI = 0;
 
@@ -53,16 +53,16 @@ int main(){
         total_error += total;
 
         double proportional_signal = total*KP;
-        double derivative_signal = (total-prev_error)*KD;
+        double derivative_signal = (total-prev_error/0.1)*KD;
         double integral_signal =  total_error*KI;
         prev_error = total;
 		
         int total_signal = proportional_signal + derivative_signal + integral_signal;
 		
-        set_motor(1, 100 + (total_signal/(160*1*KP))*255);
-        set_motor(2, 100 + (total_signal/(160*1*KP))*255);
+        set_motor(1, 50 - total_signal);
+        set_motor(2, -50 - total_signal);
 	
-        printf("tot:%d\nprop:%d\n",totalm proportional_signal);
+        printf("tot:%d\nprop:%f\n",total, proportional_signal);
         // Repeats every half second.
         Sleep(0,100000);
     }
