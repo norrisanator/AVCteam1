@@ -39,10 +39,10 @@ AVC stuff.
 
 ##Week Three Review
 - Everyone attended the Lab session
-- We decided to write the testing we are doing in the weeks reviews, so everyone can access it and
-- Hardware: We are putting the camera on the angle because we can see the line and what is on either side of it because before   we had the camera facing straight down and it could only see the line and is isn't able to see whats on either side of the     line.
-- Software (Testing): We tried to fix the code, and when this was tested we realised that the robot was moving too fast as it    kept losing the line. We found that that it could cope with one side of the white line and not the other. This was because it   is over adjusting too much.
-- Software (Tesing): We also had an error that the robot was adjusting to the wrong side of the line, we fixed this by changing   the value of the proportional value (from negative to positive and positive and negative)
-- Software (Testing): We fixed the wheels spinning by making one of the motor speeds negative because before we had both motor   speeds at positive. Making one negative and the other positive makes the wheels go straight.
+- We decided to record the testing we are doing in this weeks reviews, as our understanding and code is at a stage where the robot will begin to function as intened. This also allows the team to access it and use it in their report.
+- Hardware: We are putting the camera on an angle again so we can see the line and what is on either side of it, this is to solve an issue of having the camera facing straigth down and located low resulting in it being able to see a very little area including the line but not much either side making controlling movement difficult/impossible.
+- Software (Testing): More code fixing and adapting through tests. Testing showed us that the robot was moving to fast as it kept losing the line. We also found that that it could cope with one side of the white line and not the other. This was because it is over adjusting too much.
+-Software (Testing): We fixed the robot spinning in circles by making one of the motor speeds negative because before we had both motor speeds at positive *issue arose while making code changes*. Making one negative and the other positive makes the wheels both turn the same way.
+- Software (Testing): We also had an error that the robot was adjusting to the wrong side of the line *turning the opposite way to that expected*, we fixed this by changing the value of the proportional value (from negative to positive and positive to negative) *Wheels had been turning the wrong way*
 - Software (testing): Halved the kp (proportional constant) constant which made the robot follow the line much better.
-- We fixed the error and managed to get the robot through quadrant one
+- We fixed the noticed errors and managed to get the robot through quadrant one
