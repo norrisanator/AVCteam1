@@ -1,12 +1,15 @@
 #include  <stdio.h>
 #include  <time.h>
 // constants
-const int PICTURE_WIDTH = 320;
-const int PICTURE_HEIGHT = 240;
-const int THRESHOLD = 500000;
-const double KP = 0.005;
-const double KD = 0;
-const double KI = 0;
+#define MESSAGE_LENGTH 6
+#define MOTOR_SPEED 50
+#define SLEEP_TIME 100000
+#define PICTURE_WIDTH 320
+#define PICTURE_HEIGHT 240
+#define THRESHOLD 500000
+#define KP 0.005
+#define KD 0
+#define KI 0
 
 extern "C" int init(int d_lev);
 extern "C" int take_picture();
@@ -24,7 +27,7 @@ void openGate(){
     send_to_server("Please server");
     char message[24];
     receive_from_server(message);
-    message[6] = '\0';
+    message[MESSAGE_LENGTH] = '\0';
     send_to_server(message);
     printf("%s", message);
 }
@@ -53,18 +56,18 @@ int main(){
         total_error += total;
 
         double proportional_signal = total*KP;
-        double derivative_signal = (total-prev_error/0.1)*KD;
+        double derivative_signal = (total-prev_error/(SLEEP_TIME/1000000)*KD;
         double integral_signal =  total_error*KI;
         prev_error = total;
 		
         int total_signal = proportional_signal + derivative_signal + integral_signal;
 		
-        set_motor(1, 50 - total_signal);
-        set_motor(2, -50 - total_signal);
+        set_motor(1, MOTOR_SPEED - total_signal);
+        set_motor(2, (-1*MOTOR_SPEED) - total_signal);
 	
         printf("tot:%d\nprop:%f\n",total, proportional_signal);
         // Repeats every half second.
-        Sleep(0,100000);
+        Sleep(0,SLEEP_TIME);
     }
     return 0;
 }
