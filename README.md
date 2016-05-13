@@ -36,6 +36,7 @@ AVC stuff.
 - [x] Software: Fix error in the code to make the robot follow the line for quadrant one
 - [x] Simran: Weekly Report
 - [x] All: Discuss the progress report, so we all write similar things
+- [x] Software: Sending code to sever to open gate
 
 ##Week Three Review
 - Everyone attended the Lab session
@@ -46,3 +47,12 @@ AVC stuff.
 - Software (Testing): We also had an error that the robot was adjusting to the wrong side of the line *turning the opposite way to that expected*, we fixed this by changing the value of the proportional value (from negative to positive and positive to negative) *Wheels had been turning the wrong way*
 - Software (testing): Halved the kp (proportional constant) constant which made the robot follow the line much better.
 - We fixed the noticed errors and managed to get the robot through quadrant one
+- Software: Gate sucessfully opened. Need to implement code to make it wait at gate for it to open
+- 
+
+##Checklist for week four
+- [ ] Software: Tune line following code. Make it more smoother
+- [ ] Software: Handle junctions on line.
+- [ ] Hardware: Plan mount for IR sensors
+- [ ] Software: Get sensor value from IR sensors
+- [ ] Hardware: Finalise plan for robot's look
