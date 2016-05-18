@@ -76,11 +76,11 @@ int main(){
         int total_signal = proportional_signal + derivative_signal + integral_signal;
 		
         if(num_white > 0){
-            set_motor(1, 50 - total_signal);
-            set_motor(2, -50 - total_signal);
+            set_motor(1, MOTOR_SPEED - total_signal);
+            set_motor(2, -MOTOR_SPEED - total_signal);
         } else {
-            set_motor(1, -50);
-            set_motor(2, 50);
+            set_motor(1, -MOTOR_SPEED);
+            set_motor(2, MOTOR_SPEED);
         }
 	
         printf("tot:%d\nprop:%f\n",total, proportional_signal);
