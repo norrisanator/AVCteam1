@@ -39,7 +39,7 @@ void openGate(){
 void testSensors(){
     int select_IO(0, 1);
     int digital_sensor_reading = read_digital(0);
-    printf("%d"\n",digital_sensor_reading)
+    printf("%d"\n",digital_sensor_reading);
     Sleep(0,500000);
 }
 
