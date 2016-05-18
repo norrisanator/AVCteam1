@@ -7,8 +7,8 @@
 #define PICTURE_WIDTH 320
 #define PICTURE_HEIGHT 240
 #define THRESHOLD 500000
-#define KP 0.005
-#define KD 0
+#define KP 0.0025
+#define KD 0.0005
 #define KI 0
 //line following methods
 extern "C" int init(int d_lev);
@@ -51,7 +51,7 @@ int main(){
     //openGate();
     
     // Test code for camera, takes picture and prints it.
-    while(!true){
+    while(true){
         // Reads current image from camera stores in memory.
         take_picture();
         int total=0;
@@ -69,7 +69,7 @@ int main(){
         total_error += total;
 
         double proportional_signal = total*KP;
-        double derivative_signal = (total-prev_error)/(SLEEP_TIME/1000000)*KD;
+        double derivative_signal = (total-prev_error/0.1)*KD;
         double integral_signal =  total_error*KI;
         prev_error = total;
 		
@@ -87,7 +87,7 @@ int main(){
         // Repeats every half second.
         Sleep(0,SLEEP_TIME);
     }
-    while(true){
+    while(!true){
         testSensors();
     }
     
