@@ -56,6 +56,7 @@ AVC stuff.
 - [ ] Hardware: Plan mount for IR sensors
 - [ ] Software: Get sensor value from IR sensors
 - [ ] Hardware: Finalise plan for robot's look
+- [ ] Simran: write progress report for week four
 
 ##Week Four Review
 - Everyone attended the lab
