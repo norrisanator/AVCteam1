@@ -51,7 +51,7 @@ int main(){
     //openGate();
     
     // Test code for camera, takes picture and prints it.
-    while(true){
+    while(!true){
         // Reads current image from camera stores in memory.
         take_picture();
         int total=0;
@@ -80,7 +80,7 @@ int main(){
         // Repeats every half second.
         Sleep(0,SLEEP_TIME);
     }
-    while(!true){
+    while(true){
         testSensors();
     }
     
