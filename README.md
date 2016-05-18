@@ -48,7 +48,7 @@ AVC stuff.
 - Software (testing): Halved the kp (proportional constant) constant which made the robot follow the line much better.
 - We fixed the noticed errors and managed to get the robot through quadrant one
 - Software: Gate sucessfully opened. Need to implement code to make it wait at gate for it to open
-- 
+- Since we did not didnt make something to support the IR sensors we will do that next week
 
 ##Checklist for week four
 - [ ] Software: Tune line following code. Make it more smoother
@@ -56,3 +56,5 @@ AVC stuff.
 - [ ] Hardware: Plan mount for IR sensors
 - [ ] Software: Get sensor value from IR sensors
 - [ ] Hardware: Finalise plan for robot's look
+
+##Week Four Review
