@@ -58,3 +58,4 @@ AVC stuff.
 - [ ] Hardware: Finalise plan for robot's look
 
 ##Week Four Review
+- Everyone attended the lab
