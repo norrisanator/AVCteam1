@@ -23,8 +23,8 @@ extern "C" int send_to_server(char message[24]);
 extern "C" int receive_from_server(char message[24]);
 //Digital sensors methods
 extern "C" int init(int d_lev);
-extern "C" int read_digital(int chan, int direct);
-extern "C" int select_IO(int chan, int direct);
+extern "C" int read_analog(int ch_adc);
+//extern "C" int select_IO(int chan, int direct);
 
 void openGate(){
     connect_to_server("130.195.6.196", 1024);
@@ -37,9 +37,9 @@ void openGate(){
 }
 
 void testSensors(){
-    int select_IO(0, 1);
-    int digital_sensor_reading = read_digital(0);
-    printf("%d\n",digital_sensor_reading);
+    //int select_IO(0, 1);
+    int analog_sensor_reading = read_analog(0);
+    printf("%d\n",analog_sensor_reading);
     Sleep(0,500000);
 }
 
@@ -57,9 +57,11 @@ int main(){
         int total=0;
         int prev_error = 0;
         int total_error = 0;
+        int num_white = 0;
         bool c;
         for(int i=0; i<PICTURE_WIDTH; i++){
             c = get_pixel(i, PICTURE_HEIGHT/2, 3) > 127;
+            num_white += c;
             //printf("%d\n", c);
             total += (i-(PICTURE_WIDTH/2))*c;
 	    }
@@ -67,14 +69,19 @@ int main(){
         total_error += total;
 
         double proportional_signal = total*KP;
-        double derivative_signal = (total-prev_error/(SLEEP_TIME/1000000)*KD;
+        double derivative_signal = (total-prev_error)/(SLEEP_TIME/1000000)*KD;
         double integral_signal =  total_error*KI;
         prev_error = total;
 		
         int total_signal = proportional_signal + derivative_signal + integral_signal;
 		
-        set_motor(1, MOTOR_SPEED - total_signal);
-        set_motor(2, (-1*MOTOR_SPEED) - total_signal);
+        if(num_white > 0){
+            set_motor(1, 50 - total_signal);
+            set_motor(2, -50 - total_signal);
+        } else {
+            set_motor(1, -50);
+            set_motor(2, 50);
+        }
 	
         printf("tot:%d\nprop:%f\n",total, proportional_signal);
         // Repeats every half second.
