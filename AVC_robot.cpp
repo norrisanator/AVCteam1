@@ -10,17 +10,21 @@
 #define KP 0.005
 #define KD 0
 #define KI 0
-
+//line following methods
 extern "C" int init(int d_lev);
 extern "C" int take_picture();
 extern "C" char get_pixel(int row,int col,int colour);
 extern "C" int Sleep( int sec, int usec );
 // Motor is the pin it is connected to, dir is direction 1 or 2, speed is 0-255
 extern "C" int set_motor(int motor, int speed);
-
+//Server methods
 extern "C" int connect_to_server( char server_addr[15],int port);
 extern "C" int send_to_server(char message[24]);
 extern "C" int receive_from_server(char message[24]);
+//Digital sensors methods
+extern "C" int init(int d_lev);
+extern "C" int read_digital(int chan, int direct);
+extern "C" int select_IO(int chan, int direct);
 
 void openGate(){
     connect_to_server("130.195.6.196", 1024);
@@ -30,6 +34,13 @@ void openGate(){
     message[MESSAGE_LENGTH] = '\0';
     send_to_server(message);
     printf("%s", message);
+}
+
+void testSensors(){
+    int select_IO(0, 1);
+    int digital_sensor_reading = read_digital(0);
+    printf("%d"\n",digital_sensor_reading)
+    Sleep(0,500000);
 }
 
 
@@ -69,5 +80,10 @@ int main(){
         // Repeats every half second.
         Sleep(0,SLEEP_TIME);
     }
+    while(!true){
+        testSensors();
+    }
+    
+
     return 0;
 }
