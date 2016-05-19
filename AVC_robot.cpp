@@ -7,7 +7,7 @@
 #define PICTURE_WIDTH 320
 #define PICTURE_HEIGHT 240
 #define THRESHOLD 500000
-#define KP 0.0025
+#define KP 0.0015
 #define KD 0.0005
 #define KI 0
 //line following methods
