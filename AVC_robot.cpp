@@ -74,16 +74,32 @@ int main(){
         prev_error = total;
 		
         int total_signal = proportional_signal + derivative_signal + integral_signal;
+    	//deadend checker
     	int black_count = 0;
+    	int counter = 0;
+    	counter++;
     	if(c == 0){
     	    black_count++;    
     	}
     	if(black_count == 30){
     	    black_count = 0;
     	    set_motor(1, MOTOR_SPEED );
+    	    //turns avc slightly one way(probably)
     	    set_motor(2, -MOTOR_SPEED - 20 )
     	}
+    	if( counter == 30){
+    	    counter = 0;
+    	    black_count =0;
+    	}
+    	}
     	/*
+    	
+    	forloop(read 3-5 rows of centre of image){
+    	    similiar to what we have currently
+    	}
+    	forloop(read 3-5 columns centre of image){
+    	    will return stuff if line is directly ahead
+    	}
     	if(camera is all white){
     		turn left
     	}
@@ -93,6 +109,8 @@ int main(){
     	else if(check what side line is on ){
     	    turn to that side
     	}
+    	else if ( check if dead end)
+    	use deadend code.
     	*/
         if(num_white > 0){
             set_motor(1, MOTOR_SPEED - total_signal);
