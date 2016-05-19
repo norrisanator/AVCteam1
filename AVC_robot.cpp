@@ -74,7 +74,16 @@ int main(){
         prev_error = total;
 		
         int total_signal = proportional_signal + derivative_signal + integral_signal;
-		
+    	int black_count = 0;
+    	if(total == 0){
+    	    black_count++;    
+    	}
+    	if(black_count == 30){
+    	    black_count = 0;
+    	    set_motor(1, MOTOR_SPEED );
+    	    set_motor(2, -MOTOR_SPEED - 20 )
+    	}
+    	
         if(num_white > 0){
             set_motor(1, MOTOR_SPEED - total_signal);
             set_motor(2, -MOTOR_SPEED - total_signal);
@@ -82,14 +91,12 @@ int main(){
             set_motor(1, -MOTOR_SPEED);
             set_motor(2, MOTOR_SPEED);
         }
-	
-        printf("tot:%d\nprop:%f\n",total, proportional_signal);
-        // Repeats every half second.
-        Sleep(0,SLEEP_TIME);
-    }
-    while(!true){
-        testSensors();
-    }
+    	
+            printf("tot:%d\nprop:%f\n",total, proportional_signal);
+           
+            Sleep(0,SLEEP_TIME);
+        }
+
     
 
     return 0;
