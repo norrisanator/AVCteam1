@@ -2,7 +2,7 @@
 AVC stuff. 
 ##Checklist for Week One
 - [x] Hardware: Plan the robot, and create a prototype of how the robot will work most efficently
-- [ ] Software: working out what the values the sensor are going to give
+- [ ] Software: Working out what the values the sensor are going to give
 - [x] Software: How to send code to the pi
 - [x] Software: Constructing code for the robot to go forwards
 - [x] Simran: Write a progress report for week one
@@ -60,3 +60,4 @@ AVC stuff.
 
 ##Week Four Review
 - Everyone attended the lab
+- Worked on 3D printing, and now ready to print
