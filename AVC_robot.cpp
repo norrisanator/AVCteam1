@@ -75,7 +75,7 @@ int main(){
 		
         int total_signal = proportional_signal + derivative_signal + integral_signal;
     	int black_count = 0;
-    	if(total == 0){
+    	if(c == 0){
     	    black_count++;    
     	}
     	if(black_count == 30){
@@ -83,7 +83,17 @@ int main(){
     	    set_motor(1, MOTOR_SPEED );
     	    set_motor(2, -MOTOR_SPEED - 20 )
     	}
-    	
+    	/*
+    	if(camera is all white){
+    		turn left
+    	}
+    	else if(camera has white in front and black on sides){
+    	    go forward
+    	}
+    	else if(check what side line is on ){
+    	    turn to that side
+    	}
+    	*/
         if(num_white > 0){
             set_motor(1, MOTOR_SPEED - total_signal);
             set_motor(2, -MOTOR_SPEED - total_signal);
