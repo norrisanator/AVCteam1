@@ -131,6 +131,7 @@ int main(){
             Sleep(0,500000);
         }
             //printf("tot:%d\nprop:%f\n",total, proportional_signal);
+            printf("num white:%d\n", num_white);
             printf("black:%d\n", black_count);
             printf("Counter:%d\n", counter);
             printf("Row:%d\n", num_white);
