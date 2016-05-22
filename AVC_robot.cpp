@@ -51,6 +51,8 @@ int main(){
     //openGate();
     
     // Test code for camera, takes picture and prints it.
+    int black_count = 0;
+    int counter = 0;
     while(true){
         // Reads current image from camera stores in memory.
         take_picture();
@@ -58,6 +60,7 @@ int main(){
         int prev_error = 0;
         int total_error = 0;
         int num_white = 0;
+        int num_col_white = 0;
         bool c;
         for(int i=0; i<PICTURE_WIDTH; i++){
             c = get_pixel(i, PICTURE_HEIGHT/2, 3) > 127;
@@ -75,23 +78,15 @@ int main(){
 		
         int total_signal = proportional_signal + derivative_signal + integral_signal;
     	//deadend checker
-    	int black_count = 0;
-    	int counter = 0;
     	counter++;
-    	if(c == 0){
-    	    black_count++;    
+    	if(num_white == 0){
+    	    black_count++;
     	}
-    	if(black_count == 30){
-    	    black_count = 0;
-    	    set_motor(1, MOTOR_SPEED );
-    	    //turns avc slightly one way(probably)
-    	    set_motor(2, -MOTOR_SPEED - 20 )
-    	}
-    	if( counter == 30){
-    	    counter = 0;
-    	    black_count =0;
-    	}
-    	}
+        
+        for(int i=0; i<PICTURE_HEIGHT; i++){
+            c = get_pixel(PICTURE_WIDTH/2, i, 3) > 127;
+            num_col_white += c;
+        }
     	/*
     	
     	forloop(read 3-5 rows of centre of image){
@@ -119,8 +114,27 @@ int main(){
             set_motor(1, -MOTOR_SPEED);
             set_motor(2, MOTOR_SPEED);
         }
-    	
-            printf("tot:%d\nprop:%f\n",total, proportional_signal);
+    	if(black_count == 25){
+    	    black_count = 0;
+    	    set_motor(1, MOTOR_SPEED);
+    	    //turns avc slightly one way(probably)
+    	    set_motor(2, MOTOR_SPEED);
+            Sleep(1,0);
+    	}
+    	if(counter == 60){
+    	    counter = 0;
+    	    black_count =0;
+    	}
+        if(num_white == 320){
+            set_motor(1, MOTOR_SPEED);
+            set_motor(2, MOTOR_SPEED);
+            Sleep(0,500000);
+        }
+            //printf("tot:%d\nprop:%f\n",total, proportional_signal);
+            printf("black:%d\n", black_count);
+            printf("Counter:%d\n", counter);
+            printf("Row:%d\n", num_white);
+            printf("Col:%d\n", num_col_white);
            
             Sleep(0,SLEEP_TIME);
         }
