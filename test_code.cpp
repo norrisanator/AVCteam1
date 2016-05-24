@@ -59,45 +59,37 @@ int main(){
         int num_white = 0;
         int num_col_white = 0;
         bool c;
-        
-        for(int i = -160; i<PICTURE_WIDTH/2; i++){
-            c = get_pixel(i, PICTURE_HEIGHT/2, 3) > 127;
-            num_white += c;
-            printf("%d\n", c);
-            total += (i-(PICTURE_WIDTH/2))*c;
-	    }
-		
+        for(int i = 0; i < 10; i++){
+           	for(int j= 0; j < PICTURE_WIDTH; j++){
+           	    c =get_pixel((115 + i),j,3) > 127;
+           	    num_white += c;
+           	    total += (i-(PICTURE_WIDTH/2))*c;
+           	}
+        }
+        total / 10;
         total_error += total;
-
         double proportional_signal = total*KP;
         double derivative_signal = (total-prev_error/0.1)*KD;
         double integral_signal =  total_error*KI;
         prev_error = total;
-		
         int total_signal = proportional_signal + derivative_signal + integral_signal;
-    	//deadend checker
-
         
-        if(num_white > 0){
-            set_motor(1, MOTOR_SPEED - total_signal);
-            set_motor(2, -MOTOR_SPEED - total_signal);
-        } else if(num_white < 0){
-            set_motor(1, -MOTOR_SPEED);
-            set_motor(2, MOTOR_SPEED);
-        }
-
-        if(num_white == 0){
+        
+        
+        num_white = num_white / 10;
+        if(num_white > 300){
             set_motor(1, MOTOR_SPEED);
             set_motor(2, MOTOR_SPEED);
-            Sleep(0,500000);
         }
-
-            //printf("tot:%d\nprop:%f\n",total, proportional_signal);
-            printf("num white:%d\n", num_white);
-            printf("Row:%d\n", num_white);           
-            Sleep(0,SLEEP_TIME);
+        else if(num_white > 0){
+            set_motor(1, MOTOR_SPEED - total_signal);
+            set_motor(2, -MOTOR_SPEED - total_signal);
         }
-
+        else {
+            set_motor(1, MOTOR_SPEED);
+            set_motor(2, MOTOR_SPEED);
+        }
+        printf("num white:%d\n", num_white);
     
 
     return 0;
