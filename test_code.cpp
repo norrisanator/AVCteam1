@@ -80,7 +80,7 @@ int main(){
         
         if(num_white > 0){
             set_motor(1, MOTOR_SPEED - total_signal);
-            set_motor(2, MOTOR_SPEED - total_signal);
+            set_motor(2, -MOTOR_SPEED - total_signal);
         } else if(num_white < 0){
             set_motor(1, -MOTOR_SPEED);
             set_motor(2, MOTOR_SPEED);
@@ -88,7 +88,7 @@ int main(){
 
         if(num_white == 0){
             set_motor(1, MOTOR_SPEED);
-            set_motor(2, -MOTOR_SPEED);
+            set_motor(2, MOTOR_SPEED);
             Sleep(0,500000);
         }
 
