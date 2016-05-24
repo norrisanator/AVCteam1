@@ -61,7 +61,7 @@ int main(){
         bool c;
         
         for(int i = -160; i<PICTURE_WIDTH/2; i++){
-            c = get_pixel(i+160, PICTURE_HEIGHT/2, 3) > 127;
+            c = get_pixel(i, PICTURE_HEIGHT/2, 3) > 127;
             num_white += c;
             printf("%d\n", c);
             total += (i-(PICTURE_WIDTH/2))*c;
