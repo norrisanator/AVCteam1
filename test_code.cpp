@@ -60,8 +60,8 @@ int main(){
         int num_col_white = 0;
         bool c;
         
-        for(int i=0; i<PICTURE_WIDTH; i++){
-            c = get_pixel(i, PICTURE_HEIGHT/2, 3) > 127;
+        for(int i = -160; i<PICTURE_WIDTH/2; i++){
+            c = get_pixel(i+160, PICTURE_HEIGHT/2, 3) > 127;
             num_white += c;
             printf("%d\n", c);
             total += (i-(PICTURE_WIDTH/2))*c;
@@ -81,16 +81,17 @@ int main(){
         if(num_white > 0){
             set_motor(1, MOTOR_SPEED - total_signal);
             set_motor(2, -MOTOR_SPEED - total_signal);
-        } else {
+        } else if(num_white < 0){
             set_motor(1, -MOTOR_SPEED);
             set_motor(2, MOTOR_SPEED);
         }
 
         if(num_white == 320){
             set_motor(1, MOTOR_SPEED);
-            set_motor(2, MOTOR_SPEED);
+            set_motor(2, -MOTOR_SPEED);
             Sleep(0,500000);
         }
+
             //printf("tot:%d\nprop:%f\n",total, proportional_signal);
             printf("num white:%d\n", num_white);
             printf("Row:%d\n", num_white);           
