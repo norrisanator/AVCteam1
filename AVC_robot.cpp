@@ -61,8 +61,13 @@ int main(){
         int total_error = 0;
         int num_white = 0;
         int num_col_white = 0;
+        int total_white = 0;
         bool c;
         for(int i=0; i<PICTURE_WIDTH; i++){
+            for(int j = 0; j<5; j++){
+                c = get_pixel(i, (PICTURE_HEIGHT/2)+j, 3) > 127;
+                total_white += c;
+            }
             c = get_pixel(i, PICTURE_HEIGHT/2, 3) > 127;
             num_white += c;
             //printf("%d\n", c);
@@ -125,7 +130,7 @@ int main(){
     	    counter = 0;
     	    black_count =0;
     	}
-        if(num_white == 320){
+        if((total_white/5) == 300){
             set_motor(1, MOTOR_SPEED);
             set_motor(2, MOTOR_SPEED);
             Sleep(0,500000);
