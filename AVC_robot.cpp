@@ -130,11 +130,13 @@ int main(){
     	    counter = 0;
     	    black_count =0;
     	}
+    	/*
         if((total_white/5) == 300){
             set_motor(1, MOTOR_SPEED);
             set_motor(2, MOTOR_SPEED);
             Sleep(0,500000);
         }
+        */
             //printf("tot:%d\nprop:%f\n",total, proportional_signal);
             printf("num white:%d\n", num_white);
             printf("black:%d\n", black_count);
