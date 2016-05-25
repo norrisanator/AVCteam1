@@ -89,7 +89,9 @@ int main(){
             set_motor(1, MOTOR_SPEED);
             set_motor(2, MOTOR_SPEED);
         }
-        printf("num white:%d\n", num_white);
+        printf("num white: %d\n", num_white);
+        printf("c :%d\n", c);
+        printf("total_signal :%d\n", total_signal);
     }
     
 
