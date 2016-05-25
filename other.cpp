@@ -50,23 +50,20 @@ int main(){
     
     //openGate();
     
-    // Test code for camera, takes picture and prints it.
-    int black_count = 0;
-    int counter = 0;
     while(true){
         // Reads current image from camera stores in memory.
         take_picture();
         int total=0;
         int prev_error = 0;
         int total_error = 0;
+        int num_white = 0;
         bool c;
         for(int i=0; i<PICTURE_WIDTH; i++){
-                c = get_pixel(i, (PICTURE_HEIGHT/2)+j, 3) > 127;
-                total_white += c;
-            
+            c = get_pixel(i, (PICTURE_HEIGHT/2), 3) > 127;
             c = get_pixel(i, PICTURE_HEIGHT/2, 3) > 127;
             num_white += c;
             printf("%d\n", c);
+            printf("%d\n, num_white");
             total += (i-(PICTURE_WIDTH/2))*c;
 	    }
 		
