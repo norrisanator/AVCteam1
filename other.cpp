@@ -76,7 +76,6 @@ int main(){
 		
         int total_signal = proportional_signal + derivative_signal + integral_signal;
     	//deadend checker
-    	counter++;
 
            
             Sleep(0,SLEEP_TIME);
