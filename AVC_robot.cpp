@@ -119,13 +119,13 @@ int main(){
             set_motor(1, -MOTOR_SPEED);
             set_motor(2, MOTOR_SPEED);
         }
-    	if(black_count == 25){
+    	/*if(black_count == 25){
     	    black_count = 0;
     	    set_motor(1, MOTOR_SPEED);
     	    //turns avc slightly one way(probably)
     	    set_motor(2, MOTOR_SPEED);
             Sleep(1,0);
-    	}
+    	}*/
     	if(counter == 60){
     	    counter = 0;
     	    black_count =0;
