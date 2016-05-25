@@ -61,12 +61,12 @@ int main(){
         bool c;
         for(int i = 0; i < 10; i++){
            	for(int j= 0; j < PICTURE_WIDTH; j++){
-           	    c =get_pixel((115 + i),j,3) > 127;
+           	    c =get_pixel(j,(115 + i),3) > 127;
            	    num_white += c;
            	    total += (i-(PICTURE_WIDTH/2))*c;
            	}
         }
-        total / 10;
+        total /= 10;
         total_error += total;
         double proportional_signal = total*KP;
         double derivative_signal = (total-prev_error/0.1)*KD;
@@ -90,6 +90,7 @@ int main(){
             set_motor(2, MOTOR_SPEED);
         }
         printf("num white:%d\n", num_white);
+    }
     
 
     return 0;
