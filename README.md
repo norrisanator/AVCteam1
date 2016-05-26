@@ -61,3 +61,5 @@ AVC stuff.
 ##Week Four Review
 - Everyone attended the lab
 - Worked on 3D printing, and now ready to print
+- Hardware: We decided to move the camera further back from its positions because the software team picked up we were seeing     the line to far out which effected the turning of the robot, as it turned too  soon
+- 
