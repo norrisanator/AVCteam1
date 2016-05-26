@@ -147,7 +147,7 @@ int main(){
             if(r && !g && !b){
                 num_red++;
             }
-	    }
+        }
         printf("Red:%d\n", num_red);
         if(num_red > 100){
             set_motor(1, 0);
@@ -160,12 +160,12 @@ int main(){
     return 0;
 }
 void maze(){
-		// maze code
+    // maze code
     int prev_error = 0;
-	while(true){
-		int ir_sensor_left = read_analog(0);
-		int ir_sensor_right = read_analog(1);
-		int ir_sensor_forward = read_analog(2);
+    while(true){
+        int ir_sensor_left = read_analog(0);
+        int ir_sensor_right = read_analog(1);
+        int ir_sensor_forward = read_analog(2);
         
         int error_signal = ir_sensor_left - ir_sensor_right;
         
@@ -181,23 +181,21 @@ void maze(){
         
         Sleep(0,SLEEP_TIME);
         
-		//need to check what sensors connected to which
-		//if left sensor further from wall than right
-		/*if(ir_sensor1 > ir_sensor2){
-			//turn motors left
-			//change by PID value
-		}
-		//if right sensor further from wall than left
-		else if(ir_sensor2 > ir_sensor1){
-			//turn motors right
-			//change by PID value
-		}
-		if(ir_sensor3 < 50){
-			//touching wall
-			// reverse rotate 180 continue forward.
-		}*/
-	}
-    
-
+        //need to check what sensors connected to which
+        //if left sensor further from wall than right
+        /*if(ir_sensor1 > ir_sensor2){
+            //turn motors left
+            //change by PID value
+        }
+        //if right sensor further from wall than left
+        else if(ir_sensor2 > ir_sensor1){
+            //turn motors right
+            //change by PID value
+        }
+        if(ir_sensor3 < 50){
+            //touching wall
+            // reverse rotate 180 continue forward.
+        }*/
+    }
     return;
 }
