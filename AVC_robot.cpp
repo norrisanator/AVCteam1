@@ -153,25 +153,26 @@ int main(){
             Sleep(0,SLEEP_TIME);
         }
 		// maze code
-    	while(true){
-    		int ir_sensor1 = read_analog(0);
-    		int ir_sensor2 = read_analog(1);
-    		int ir_sensor3 = read_analog(2);
-    		//need to check what sensors connected to which
-    		//if left sensor further from wall than right
-    		if(ir_sensor1 > ir_sensor2){
-    			//turn motors left
-    			//change by PID value
-    		}
-    		//if right sensor further from wall than left
-    		else if(ir_sensor2 > ir_sensor1){
-    			//turn motors right
-    			//change by PID value
-    		}
-    		if(ir_sensor3 < 50){
-    			//touching wall
-    			// reverse rotate 180 continue forward.
-    		}
+	while(true){
+		int ir_sensor1 = read_analog(0);
+		int ir_sensor2 = read_analog(1);
+		int ir_sensor3 = read_analog(2);
+		//need to check what sensors connected to which
+		//if left sensor further from wall than right
+		if(ir_sensor1 > ir_sensor2){
+			//turn motors left
+			//change by PID value
+		}
+		//if right sensor further from wall than left
+		else if(ir_sensor2 > ir_sensor1){
+			//turn motors right
+			//change by PID value
+		}
+		if(ir_sensor3 < 50){
+			//touching wall
+			// reverse rotate 180 continue forward.
+		}
+	}
     
 
     return 0;
