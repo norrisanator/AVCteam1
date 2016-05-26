@@ -38,8 +38,8 @@ void handle_signal(int signal){
 }
 
 void openGate(){
-    connect_to_server("130.195.6.196", 1024);
-    send_to_server("Please");
+    connect_to_server((char *)"130.195.6.196", 1024);
+    send_to_server((char *)"Please");
     char message[24];
     receive_from_server(message);
     message[MESSAGE_LENGTH] = '\0';
