@@ -12,6 +12,9 @@
 #define KP 0.0015
 #define KD 0.0005
 #define KI 0
+#define MAZE_KP 0.0015
+#define MAZE_KD 0.0005
+#define MAZE_KI 0
 //line following methods
 extern "C" int init(int d_lev);
 extern "C" int take_picture();
@@ -27,6 +30,8 @@ extern "C" int receive_from_server(char message[24]);
 extern "C" int init(int d_lev);
 extern "C" int read_analog(int ch_adc);
 //extern "C" int select_IO(int chan, int direct);
+
+void maze();
 
 void handle_signal(int signal){
     if(signal == SIGINT){
@@ -147,19 +152,38 @@ int main(){
         if(num_red > 100){
             set_motor(1, 0);
             set_motor(2, 0);
-            return 0;
+            maze();
         }
            
-            Sleep(0,SLEEP_TIME);
-        }
+        Sleep(0,SLEEP_TIME);
+    }
+    return 0;
+}
+void maze(){
 		// maze code
+    int prev_error = 0;
 	while(true){
-		int ir_sensor1 = read_analog(0);
-		int ir_sensor2 = read_analog(1);
-		int ir_sensor3 = read_analog(2);
+		int ir_sensor_left = read_analog(0);
+		int ir_sensor_right = read_analog(1);
+		int ir_sensor_forward = read_analog(2);
+        
+        int error_signal = ir_sensor_left - ir_sensor_right;
+        
+        double proportional_signal = total*MAZE_KP;
+        double derivative_signal = (total-prev_error/0.1)*MAZE_KD;
+        double integral_signal =  total_error*MAZE_KI;
+        prev_error = total;
+
+        int total_signal = proportional_signal + derivative_signal + integral_signal;
+        
+        set_motor(1, MOTOR_SPEED - total_signal);
+        set_motor(2, -MOTOR_SPEED - total_signal);
+        
+        Sleep(0,SLEEP_TIME);
+        
 		//need to check what sensors connected to which
 		//if left sensor further from wall than right
-		if(ir_sensor1 > ir_sensor2){
+		/*if(ir_sensor1 > ir_sensor2){
 			//turn motors left
 			//change by PID value
 		}
@@ -171,9 +195,9 @@ int main(){
 		if(ir_sensor3 < 50){
 			//touching wall
 			// reverse rotate 180 continue forward.
-		}
+		}*/
 	}
     
 
-    return 0;
+    return;
 }
