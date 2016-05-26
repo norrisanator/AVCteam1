@@ -71,6 +71,7 @@ int main(){
     // Test code for camera, takes picture and prints it.
     int black_count = 0;
     int counter = 0;
+    maze();
     while(true){
         // Reads current image from camera stores in memory.
         take_picture();
@@ -166,7 +167,9 @@ void maze(){
         int ir_sensor_left = read_analog(0);
         int ir_sensor_right = read_analog(1);
         int ir_sensor_forward = read_analog(2);
-        
+        printf("0:%d\n", read_analog(0));
+        printf("1:%d\n", read_analog(1));
+        printf("2:%d\n", read_analog(2));
         int error_signal = ir_sensor_left - ir_sensor_right;
         
         double proportional_signal = total*MAZE_KP;
@@ -176,8 +179,8 @@ void maze(){
 
         int total_signal = proportional_signal + derivative_signal + integral_signal;
         
-        set_motor(1, MOTOR_SPEED - total_signal);
-        set_motor(2, -MOTOR_SPEED - total_signal);
+        //set_motor(1, MOTOR_SPEED - total_signal);
+        //set_motor(2, -MOTOR_SPEED - total_signal);
         
         Sleep(0,SLEEP_TIME);
         
