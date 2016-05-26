@@ -172,12 +172,12 @@ void maze(){
         printf("1:%d\n", read_analog(1));
         printf("2:%d\n", read_analog(2));
         int error_signal = ir_sensor_left - ir_sensor_right;
-        total += error_signal;
+        total_error += error_signal;
         
         double proportional_signal = error_signal*MAZE_KP;
         double derivative_signal = (error_signal-prev_error/0.1)*MAZE_KD;
         double integral_signal =  total_error*MAZE_KI;
-        prev_error = total;
+        prev_error = error_signal;
 
         int total_signal = proportional_signal + derivative_signal + integral_signal;
         
