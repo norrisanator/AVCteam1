@@ -49,7 +49,7 @@ int main(){
     init(0);
 
     //openGate();
-
+	 int prev_error = 0;
     // Test code for camera, takes picture and prints it.
     while(true){
         for(int i=0; i<PICTURE_HEIGHT; i++){
@@ -59,7 +59,7 @@ int main(){
         // Reads current image from camera stores in memory.
         take_picture();
         int total=0;
-        int prev_error = 0;
+
         int total_error = 0;
         int num_white = 0;
         int num_col_white = 0;
