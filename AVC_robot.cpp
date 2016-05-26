@@ -105,26 +105,7 @@ int main(){
             c = get_pixel(PICTURE_WIDTH/2, i, 3) > 127;
             num_col_white += c;
         }
-        /*
         
-        forloop(read 3-5 rows of centre of image){
-            similiar to what we have currently
-        }
-        forloop(read 3-5 columns centre of image){
-            will return stuff if line is directly ahead
-        }
-        if(camera is all white){
-            turn left
-        }
-        else if(camera has white in front and black on sides){
-            go forward
-        }
-        else if(check what side line is on ){
-            turn to that side
-        }
-        else if ( check if dead end)
-        use deadend code.
-        */
         if (num_white >= 320){
             set_motor(1, -MOTOR_SPEED - total_signal);
             set_motor(2, -MOTOR_SPEED - total_signal);
@@ -138,7 +119,7 @@ int main(){
         if(black_count == 25){
             black_count = 0;
             set_motor(1, MOTOR_SPEED);
-            //turns avc slightly one way(probably)
+            //turns avc around
             set_motor(2, MOTOR_SPEED);
             Sleep(2,0);
         }
@@ -146,19 +127,12 @@ int main(){
             counter = 0;
             black_count =0;
         }
-        /*
-        if((total_white/5) == 300){
-            set_motor(1, MOTOR_SPEED);
-            set_motor(2, MOTOR_SPEED);
-            Sleep(0,500000);
-        }
-        */
-            //printf("tot:%d\nprop:%f\n",total, proportional_signal);
-            printf("num white:%d\n", num_white);
-            printf("black:%d\n", black_count);
-            printf("Counter:%d\n", counter);
-            printf("Row:%d\n", num_white);
-            printf("Col:%d\n", num_col_white);
+
+        printf("num white:%d\n", num_white);
+        printf("black:%d\n", black_count);
+        printf("Counter:%d\n", counter);
+        printf("Row:%d\n", num_white);
+        printf("Col:%d\n", num_col_white);
             
         int num_red = 0;
         for(int i=0; i<PICTURE_WIDTH; i++){
@@ -178,7 +152,27 @@ int main(){
            
             Sleep(0,SLEEP_TIME);
         }
-
+		// maze code
+	while(true){
+		int ir_sensor1 = read_analog(0);
+		int ir_sensor2 = read_analog(1);
+		int ir_sensor3 = read_analog(2);
+		//need to check what sensors connected to which
+		//if left sensor further from wall than right
+		if(ir_sensor1 > ir_sensor2){
+			//turn motors left
+			//change by PID value
+		}
+		//if right sensor further from wall than left
+		else if(ir_sensor2 > ir_sensor1){
+			//turn motors right
+			//change by PID value
+		}
+		if(ir_sensor3 < 50){
+			//touching wall
+			// reverse rotate 180 continue forward.
+		}
+	}
     
 
     return 0;
