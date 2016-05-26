@@ -53,13 +53,19 @@ AVC stuff.
 ##Checklist for week four
 - [ ] Software: Tune line following code. Make it more smoother
 - [ ] Software: Handle junctions on line.
-- [ ] Hardware: Plan mount for IR sensors
-- [ ] Software: Get sensor value from IR sensors
-- [ ] Hardware: Finalise plan for robot's look
-- [ ] Simran: write progress report for week four
+- [x] Hardware: Plan mount for IR sensors
+- [x] Software: Get sensor value from IR sensors
+- [x] Hardware: Finalise plan for robot's look
+- [x] Simran: write progress report for week four
 
 ##Week Four Review
 - Everyone attended the lab
+- We will try completing the software tasks next week
 - Worked on 3D printing, and now ready to print
 - Hardware: We decided to move the camera further back from its positions because the software team picked up we were seeing     the line to far out which effected the turning of the robot, as it turned too  soon
-- 
+
+##Checklist for week five
+- [ ] get 3D printing done
+- [ ] Software: Tune line following code. Make it more smoother
+- [ ] Software: Handle junctions on line.
+- [ ] Simran: Write progress report 
