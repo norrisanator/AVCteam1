@@ -73,4 +73,4 @@ AVC stuff.
 ##Week Five Review
 - Everyone attended the lab
 - Hardware: We decided to move the camera further back from its positions because the software team picked up we were seeing     the line to far out which effected the turning of the robot, as it turned too soon
-- Hardware: Didnt get the 3D printing done in lab because the 3D printers broke
+- Hardware: Didnt get the 3D printing done in lab because the 3D printers broke, but we wil get them done this week
