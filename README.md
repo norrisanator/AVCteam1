@@ -50,7 +50,7 @@ AVC stuff.
 - Software: Gate sucessfully opened. Need to implement code to make it wait at gate for it to open
 - Since we did not didnt make something to support the IR sensors we will do that next week
 
-##Checklist for week four
+##Checklist for Week Four
 - [ ] Software: Tune line following code. Make it more smoother
 - [ ] Software: Handle junctions on line.
 - [x] Hardware: Plan mount for IR sensors
@@ -62,10 +62,15 @@ AVC stuff.
 - Everyone attended the lab
 - We will try completing the software tasks next week
 - Worked on 3D printing, and now ready to print
-- Hardware: We decided to move the camera further back from its positions because the software team picked up we were seeing     the line to far out which effected the turning of the robot, as it turned too  soon
+- Got most of 3D printing done
 
-##Checklist for week five
+##Checklist for Week Five
 - [ ] get 3D printing done
 - [ ] Software: Tune line following code. Make it more smoother
 - [ ] Software: Handle junctions on line.
 - [ ] Simran: Write progress report 
+
+##Week Five Review
+- Everyone attended the lab
+- Hardware: We decided to move the camera further back from its positions because the software team picked up we were seeing     the line to far out which effected the turning of the robot, as it turned too soon
+- Hardware: Didnt get the 3D printing done in lab because the 3D printers broke
