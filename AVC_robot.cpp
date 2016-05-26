@@ -165,12 +165,12 @@ void maze(){
     int prev_error = 0;
     int total_error = 0;
     while(true){
-        int ir_sensor_left = read_analog(0);
-        int ir_sensor_right = read_analog(1);
-        int ir_sensor_forward = read_analog(2);
-        printf("0:%d\n", read_analog(0));
-        printf("1:%d\n", read_analog(1));
-        printf("2:%d\n", read_analog(2));
+        int ir_sensor_left = read_analog(1);
+        int ir_sensor_right = read_analog(2);
+        int ir_sensor_forward = read_analog(0);
+        printf("Left:%d\n", ir_sensor_left);
+        printf("Right:%d\n", ir_sensor_right);
+        printf("Ford:%d\n", ir_sensor_forward);
         int error_signal = ir_sensor_left - ir_sensor_right;
         total_error += error_signal;
         
