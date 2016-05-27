@@ -12,8 +12,8 @@
 #define KP 0.0015
 #define KD 0.0005
 #define KI 0
-#define MAZE_KP 0.0015
-#define MAZE_KD 0.0005
+#define MAZE_KP 0.05
+#define MAZE_KD 0
 #define MAZE_KI 0
 //line following methods
 extern "C" int init(int d_lev);
@@ -71,7 +71,8 @@ int main(){
     // Test code for camera, takes picture and prints it.
     int black_count = 0;
     int counter = 0;
-    maze();
+    bool first_full_line = true;
+    //maze();
     while(true){
         // Reads current image from camera stores in memory.
         take_picture();
@@ -113,8 +114,16 @@ int main(){
         }
         
         if (num_white >= 320){
-            set_motor(1, -MOTOR_SPEED - total_signal);
-            set_motor(2, -MOTOR_SPEED - total_signal);
+            printf("hit");
+            if(first_full_line == true){
+                first_full_line = false;
+                set_motor(1, MOTOR_SPEED);
+                set_motor(2, -MOTOR_SPEED);
+                Sleep(1,0);
+            } else {
+                set_motor(1, -MOTOR_SPEED - total_signal);
+                set_motor(2, -MOTOR_SPEED - total_signal);
+            }
         } else if(num_white > 0){
             set_motor(1, MOTOR_SPEED - total_signal);
             set_motor(2, -MOTOR_SPEED - total_signal);
@@ -127,18 +136,18 @@ int main(){
             set_motor(1, MOTOR_SPEED);
             //turns avc around
             set_motor(2, MOTOR_SPEED);
-            Sleep(2,0);
+            Sleep(1,0);
         }
         if(counter == 60){
             counter = 0;
             black_count =0;
         }
 
-        printf("num white:%d\n", num_white);
+        /*printf("num white:%d\n", num_white);
         printf("black:%d\n", black_count);
         printf("Counter:%d\n", counter);
         printf("Row:%d\n", num_white);
-        printf("Col:%d\n", num_col_white);
+        printf("Col:%d\n", num_col_white);*/
             
         int num_red = 0;
         for(int i=0; i<PICTURE_WIDTH; i++){
@@ -171,7 +180,7 @@ void maze(){
         printf("Left:%d\n", ir_sensor_left);
         printf("Right:%d\n", ir_sensor_right);
         printf("Ford:%d\n", ir_sensor_forward);
-        int error_signal = ir_sensor_left - ir_sensor_right;
+        int error_signal = ir_sensor_right - ir_sensor_left;
         total_error += error_signal;
         
         double proportional_signal = error_signal*MAZE_KP;
@@ -181,8 +190,30 @@ void maze(){
 
         int total_signal = proportional_signal + derivative_signal + integral_signal;
         
-        //set_motor(1, MOTOR_SPEED - total_signal);
-        //set_motor(2, -MOTOR_SPEED - total_signal);
+        if(ir_sensor_right < 130){
+            printf("hi\n");
+            set_motor(1, MOTOR_SPEED);
+            set_motor(2, -MOTOR_SPEED);
+            Sleep(0, 800000);
+            set_motor(1, MOTOR_SPEED);
+            set_motor(2, 0);
+            Sleep(1,500000);
+            ir_sensor_right = read_analog(2);
+            /*if(ir_sensor_right < 130){
+                set_motor(1, MOTOR_SPEED);
+                set_motor(2, -MOTOR_SPEED);
+                Sleep(0, 500000);
+                set_motor(1, MOTOR_SPEED);
+                set_motor(2, 0);
+                Sleep(1,0);
+            }*/
+        } else if(ir_sensor_forward > 300){
+            set_motor(1, -MOTOR_SPEED);
+            set_motor(2, -MOTOR_SPEED);
+        } else {
+            set_motor(1, MOTOR_SPEED - total_signal);
+            set_motor(2, -MOTOR_SPEED - total_signal);
+        }
         
         Sleep(0,SLEEP_TIME);
         
