@@ -66,7 +66,7 @@ int main(){
     
     std::signal(SIGINT, handle_signal);
     
-    //openGate();
+    openGate();
     
     // Test code for camera, takes picture and prints it.
     int black_count = 0;
@@ -114,7 +114,7 @@ int main(){
         }
         
         if (num_white >= 320){
-            printf("hit");
+            printf("hit\n");
             if(first_full_line == true){
                 first_full_line = false;
                 set_motor(1, MOTOR_SPEED);
@@ -158,7 +158,7 @@ int main(){
                 num_red++;
             }
         }
-        printf("Red:%d\n", num_red);
+        //printf("Red:%d\n", num_red);
         if(num_red > 100){
             set_motor(1, 0);
             set_motor(2, 0);
@@ -174,8 +174,8 @@ void maze(){
     int prev_error = 0;
     int total_error = 0;
     while(true){
-        int ir_sensor_left = read_analog(1);
-        int ir_sensor_right = read_analog(2);
+        int ir_sensor_left = read_analog(2);
+        int ir_sensor_right = read_analog(1);
         int ir_sensor_forward = read_analog(0);
         printf("Left:%d\n", ir_sensor_left);
         printf("Right:%d\n", ir_sensor_right);
