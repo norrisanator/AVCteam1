@@ -35,6 +35,9 @@ We are now looking at getting mounts for the three I.R sensors that will get the
   * This creates slight issues with the camera mount, *current thought is to put a bracket bellow the camera*
  
 ######Other Possible 3D Printing _not yet required_
-- [ ] Block for motor mount to make the robot flat
-- [ ] Bracket to raise camera height that is fixed *(not hinged)*
+- [x] Block for motor mount to make the robot flat
+- [x] Bracket to raise camera height that is fixed *(not hinged)*
+
+*In the end all parts being 3D printed. This included the braces for the Rpi and power board to be mounted on. The front braces also had mounts for two of the angeled front I.R sensors. Also printed off a Camera holder with a I.R front mount below it facing forward. We ended up also printing out a base cassis that had the correct thinkness for the motors to be mounted flat. As well as space for the wires to be hidden. 
+
 
