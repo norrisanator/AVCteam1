@@ -39,5 +39,20 @@ We are now looking at getting mounts for the three I.R sensors that will get the
 - [x] Bracket to raise camera height that is fixed *(not hinged)*
 
 *In the end all parts being 3D printed. This included the braces for the Rpi and power board to be mounted on. The front braces also had mounts for two of the angeled front I.R sensors. Also printed off a Camera holder with a I.R front mount below it facing forward. We ended up also printing out a base cassis that had the correct thinkness for the motors to be mounted flat. As well as space for the wires to be hidden. 
+###3D printed Part Sizes:
+|Part        | Width *(mm)*| Height *(mm)*| Length*(mm)*
+|------------| ------------| -------------| -------------|  *IR mounts attached to the front bracing and Camera mount. 
+|Bracing     |2            |70            |10
+|Base        |55           |10            |135
+|I.R mount*  |2            |50            |10
+|Camera Mount|25           |2             |32
 
+!! Also see photo with visual measurements. 
+
+
+All Parts attached using a mix of 2mm screws and nuts varing in length from 4mm - 16mm. (maybe some hot glue aswell)  
+- Motors and bracing attached to the Chassis using 2mm by 16mm screw and nut. 
+- Raspberry Pi, Camera and IR sensors attached to bracing using 2mm by 4mm screw. 
+- Power board and Camera mount attached to bracing uing 2mm by 8mm screw and nut.
+- There were two pieces of plastic hot glued to the bottom to hold wires in place. 
 
