@@ -9,8 +9,11 @@
 #define PICTURE_WIDTH 320
 #define PICTURE_HEIGHT 240
 #define THRESHOLD 500000
+//proportional constant
 #define KP 0.0015
+//derivative constant
 #define KD 0.0005
+//integral constant
 #define KI 0
 #define MAZE_KP 0.05
 #define MAZE_KD 0
@@ -32,7 +35,7 @@ extern "C" int read_analog(int ch_adc);
 //extern "C" int select_IO(int chan, int direct);
 
 void maze();
-
+//stops motors spinning
 void handle_signal(int signal){
     if(signal == SIGINT){
         set_motor(1, 0);
@@ -41,12 +44,14 @@ void handle_signal(int signal){
         std::exit(0);
     }
 }
-
+// https://github.com/kaiwhata/ENGR101-2016/wiki/Network-commands
+// more detail on open gate
 void openGate(){
     connect_to_server((char *)"130.195.6.196", 1024);
     send_to_server((char *)"Please");
     char message[24];
     receive_from_server(message);
+    // null character limits message length at 6 characters long
     message[MESSAGE_LENGTH] = '\0';
     send_to_server(message);
     printf("%s", message);
@@ -83,54 +88,65 @@ int main(){
         int total_white = 0;
         int prev_error = 0;
         bool c;
+        // loop takes a line of pixels 5 wide horizontally accross the picture
         for(int i=0; i<PICTURE_WIDTH; i++){
             for(int j = 0; j<5; j++){
+                // c gets assigned 0 or 1
                 c = get_pixel(i, (PICTURE_HEIGHT/2)+j, 3) > 127;
+                // 0 or 1 added to total_white
                 total_white += c;
             }
+            // num_white gets the values from just 1 pixel line across the picture.
             c = get_pixel(i, PICTURE_HEIGHT/2, 3) > 127;
             num_white += c;
-            //printf("%d\n", c);
+            // added to the total
             total += (i-(PICTURE_WIDTH/2))*c;
         }
         
         total_error += total;
-
+        // PID control see https://github.com/kaiwhata/ENGR101-2016/wiki/PID-(Proportional-Integral-Derivative)-Control
+        // for more detail
         double proportional_signal = total*KP;
         double derivative_signal = (total-prev_error/0.1)*KD;
         double integral_signal =  total_error*KI;
         prev_error = total;
-
         int total_signal = proportional_signal + derivative_signal + integral_signal;
         //deadend checker
         counter++;
+        // if the camera sees nothing but black implements black_count
         if(num_white == 0){
             black_count++;
         }
-        
+        // takes a picture of a verticle column in centre of picture
+        // currently unused.
         for(int i=0; i<PICTURE_HEIGHT; i++){
             c = get_pixel(PICTURE_WIDTH/2, i, 3) > 127;
             num_col_white += c;
         }
-        
+        // detecting if picture is fully white, e.g. only see white
         if (num_white >= 320){
             printf("hit\n");
             if(first_full_line == true){
+                // drives straight through
                 first_full_line = false;
                 set_motor(1, MOTOR_SPEED);
                 set_motor(2, -MOTOR_SPEED);
                 Sleep(1,0);
             } else {
+                //turns left
                 set_motor(1, -MOTOR_SPEED - total_signal);
                 set_motor(2, -MOTOR_SPEED - total_signal);
             }
         } else if(num_white > 0){
+            // drives forward
             set_motor(1, MOTOR_SPEED - total_signal);
             set_motor(2, -MOTOR_SPEED - total_signal);
         } else {
+            // turns
             set_motor(1, -MOTOR_SPEED);
             set_motor(2, MOTOR_SPEED);
         }
+        // if stuck at dead end for too long spins around
         if(black_count == 25){
             black_count = 0;
             set_motor(1, MOTOR_SPEED);
@@ -138,6 +154,7 @@ int main(){
             set_motor(2, MOTOR_SPEED);
             Sleep(1,0);
         }
+        //resetes counting how many times it detects dead end.
         if(counter == 60){
             counter = 0;
             black_count =0;
@@ -148,7 +165,8 @@ int main(){
         printf("Counter:%d\n", counter);
         printf("Row:%d\n", num_white);
         printf("Col:%d\n", num_col_white);*/
-            
+        
+        // detecting if at red square for start of maze    
         int num_red = 0;
         for(int i=0; i<PICTURE_WIDTH; i++){
             bool r = get_pixel(i, PICTURE_WIDTH/2, 0) > 200;
@@ -182,14 +200,14 @@ void maze(){
         printf("Ford:%d\n", ir_sensor_forward);
         int error_signal = ir_sensor_right - ir_sensor_left;
         total_error += error_signal;
-        
+        // see PID control https://github.com/kaiwhata/ENGR101-2016/wiki/PID-(Proportional-Integral-Derivative)-Control
         double proportional_signal = error_signal*MAZE_KP;
         double derivative_signal = (error_signal-prev_error/0.1)*MAZE_KD;
         double integral_signal =  total_error*MAZE_KI;
         prev_error = error_signal;
 
         int total_signal = proportional_signal + derivative_signal + integral_signal;
-        
+        // robot will always turn right
         if(ir_sensor_right < 130){
             printf("hi\n");
             set_motor(1, MOTOR_SPEED);
@@ -208,30 +226,16 @@ void maze(){
                 Sleep(1,0);
             }*/
         } else if(ir_sensor_forward > 300){
+            // spins robot around
             set_motor(1, -MOTOR_SPEED);
             set_motor(2, -MOTOR_SPEED);
         } else {
+            // goes straight forward
             set_motor(1, MOTOR_SPEED - total_signal);
             set_motor(2, -MOTOR_SPEED - total_signal);
         }
         
         Sleep(0,SLEEP_TIME);
-        
-        //need to check what sensors connected to which
-        //if left sensor further from wall than right
-        /*if(ir_sensor1 > ir_sensor2){
-            //turn motors left
-            //change by PID value
-        }
-        //if right sensor further from wall than left
-        else if(ir_sensor2 > ir_sensor1){
-            //turn motors right
-            //change by PID value
-        }
-        if(ir_sensor3 < 50){
-            //touching wall
-            // reverse rotate 180 continue forward.
-        }*/
     }
     return;
 }
