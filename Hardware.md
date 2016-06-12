@@ -1,10 +1,10 @@
 #Hardware Information Log
 
 ###Part Sizes:
-|Part        | Width *(mm)*| Height *(mm)*|
-|------------| ------------| -------------|
+|Part        | Length *(mm)*| Width *(mm)*| Heigth *(mm)*|
+|------------| ------------| -------------| -------------|
 |Power Board |118          |64            |
-|RPi         |85           |5.5           |
+|RPi         |85           |56            |17            |
 |Camera      |25           |25            |
 |I.R         |20           |45            |
 |**Wheel Size**    | **Diamater _(mm)_**  |
