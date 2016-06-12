@@ -48,6 +48,7 @@ We are now looking at getting mounts for the three I.R sensors that will get the
 |Camera Mount|25           |2             |32
 
 !! Also see photo with visual measurements. 
+![Visual Measurements](https://github.com/papasele/AVCteam1/blob/master/Bot.Sizing.Image..jpg)
 
 
 All Parts attached using a mix of 2mm screws and nuts varing in length from 4mm - 16mm. (maybe some hot glue aswell)  
