@@ -7,7 +7,7 @@
 |RPi         |85           |56            |17            |
 |Camera      |25           |25            |
 |I.R         |20           |45            |
-|**Wheel Size**    | **Diamater _(mm)_**  |
+|**Wheel Size**    | **Diameter _(mm)_**  |
 |Small       |30          |
 |Medium      |60          |
 |Large       |90          |
